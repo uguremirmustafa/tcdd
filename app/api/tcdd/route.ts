@@ -2,7 +2,7 @@ import fs from "node:fs";
 import { Root } from "./types";
 import sendEmail from "./sendMail";
 
-export async function GET(request: Request) {
+export async function GET() {
   const finalTrains = await prepareTrains();
   if (finalTrains.length > 0) {
     await sendEmail("trenler", JSON.stringify(finalTrains, null, 4));
