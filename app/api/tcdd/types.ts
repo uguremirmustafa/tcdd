@@ -1,7 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export type Root = Root2[];
+export interface Root {
+  trainLegs: TrainLeg[];
+  legCount: number;
+  roundTripDiscount: number;
+  maxRegionalTrainsRoundTripDays: number;
+}
 
-export interface Root2 {
+export interface TrainLeg {
+  trainAvailabilities: TrainAvailability[];
+  resultCount: number;
+}
+
+export interface TrainAvailability {
   trains: Train[];
   totalTripTime: number;
   minPrice: number;
@@ -28,6 +38,7 @@ export interface Train {
   cars: Car[];
   trainSegments: TrainSegment[];
   totalDistance: number;
+  onSale: boolean;
   availableFareInfo: AvailableFareInfo[];
   cabinClassAvailabilities: CabinClassAvailability[];
   trainDate: number;
@@ -39,6 +50,9 @@ export interface MinPrice {
   type: any;
   priceAmount: number;
   priceCurrency: string;
+  originalAmount: number;
+  originalCurrency: any;
+  exchangeRate: number;
 }
 
 export interface BookingClassCapacity {
@@ -261,30 +275,52 @@ export interface FareBasis {
   code: string;
   factor: number;
   price: Price;
+  originalPrice: OriginalPrice;
 }
 
 export interface Price {
   type: any;
   priceAmount: number;
   priceCurrency: string;
+  originalAmount: number;
+  originalCurrency: any;
+  exchangeRate: number;
+}
+
+export interface OriginalPrice {
+  type: any;
+  priceAmount: number;
+  priceCurrency: string;
+  originalAmount: number;
+  originalCurrency: any;
+  exchangeRate: number;
 }
 
 export interface BasePrice2 {
   type: any;
   priceAmount: number;
   priceCurrency: string;
+  originalAmount: number;
+  originalCurrency: any;
+  exchangeRate: number;
 }
 
 export interface CrudePrice {
   type: any;
   priceAmount: number;
   priceCurrency: string;
+  originalAmount: number;
+  originalCurrency: any;
+  exchangeRate: number;
 }
 
 export interface BaseTransportationCost {
   type: any;
   priceAmount: number;
   priceCurrency: string;
+  originalAmount: number;
+  originalCurrency: any;
+  exchangeRate: number;
 }
 
 export interface AdditionalService2 {
@@ -415,3 +451,5 @@ export interface CabinClass6 {
   bookingClassModels: any;
   showAvailabilityOnQuery: boolean;
 }
+
+export type SeatType = 'BUSİNESS' | 'EKONOMİ' | 'TEKERLEKLİ SANDALYE';

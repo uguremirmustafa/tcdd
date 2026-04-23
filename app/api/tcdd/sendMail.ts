@@ -1,31 +1,30 @@
-import nodemailer from "nodemailer";
+import nodemailer from 'nodemailer';
 
 // Create a transporter
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  service: 'gmail',
   auth: {
-    user: "uguremirmustafa@gmail.com",
+    user: 'uguremirmustafa@gmail.com',
     pass: process.env.GOOGLE_APP_PASS,
   },
 });
 
 // Email options
 const mailOptions = {
-  from: "uguremirmustafa@gmail.com",
-  to: "uguremirmustafa@gmail.com",
-  subject: "Hello from Node.js!",
-  text: "This is a test email sent from a Node.js process.",
+  from: 'uguremirmustafa@gmail.com',
+  subject: 'Hello from Node.js!',
+  text: 'This is a test email sent from a Node.js process.',
 };
 
 // Send the email
-async function sendEmail(subject: string, text: string) {
+async function sendEmail(subject: string, text: string, to: string) {
   try {
-    const mail = { ...mailOptions, subject, text };
+    const mail = { ...mailOptions, subject, text, to };
     console.log(mail);
     const info = await transporter.sendMail(mail);
-    console.log("Email sent:", info.response);
+    console.log('Email sent:', info.response);
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error('Error sending email:', error);
   }
 }
 
